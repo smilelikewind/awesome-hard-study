@@ -53,6 +53,7 @@ coverage/
 .workbuddy/
 .opencode/
 .sisyphus/
+oh-my-openagent/
 
 # Generated files
 generated/
