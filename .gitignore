@@ -17,6 +17,7 @@ bun.lockb
 .env
 .env.*
 !.env.example
+.python-version
 
 # IDE / Editor
 .vscode/settings.json
