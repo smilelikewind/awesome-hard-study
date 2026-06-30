@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿里巴巴 (BABA/9988) 深度分析报告 — 股价为何大跌？是否还值得投资？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    color: #2c2c2a;
+    background: #f9f8f5;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; color: #1a1a1a; line-height: 1.35; }
+  .subtitle { font-size: 14px; color: #888780; margin-bottom: 24px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 36px 0 14px; color: #26215c; border-bottom: 2px solid #eeedfe; padding-bottom: 8px; }
+  h3 { font-size: 16px; font-weight: 600; margin: 22px 0 10px; color: #3c3489; }
+  h4 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; color: #534ab7; }
+  p { margin-bottom: 12px; font-size: 15px; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; margin-right: 6px; }
+  .tag-bull { background: #e1f5ee; color: #0f6e56; }
+  .tag-bear { background: #faece7; color: #993c1d; }
+  .tag-neutral { background: #e6f1fb; color: #185fa5; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  th { background: #f1efe8; padding: 8px 10px; text-align: left; font-weight: 600; color: #444441; border-bottom: 2px solid #d3d1c7; }
+  td { padding: 8px 10px; border-bottom: 0.5px solid #e8e6df; }
+  tr:nth-child(even) td { background: #fafaf8; }
+  .highlight-box { background: #eeedfe; border-left: 4px solid #534ab7; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .warn-box { background: #faece7; border-left: 4px solid #d85a30; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .success-box { background: #e1f5ee; border-left: 4px solid #1d9e75; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .info-box { background: #e6f1fb; border-left: 4px solid #378add; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; }
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0; }
+  .metric-card { background: #fff; border-radius: 8px; padding: 14px; border: 0.5px solid #e8e6df; }
+  .metric-card .label { font-size: 12px; color: #888780; margin-bottom: 4px; }
+  .metric-card .value { font-size: 22px; font-weight: 700; color: #26215c; }
+  .metric-card .change { font-size: 12px; margin-top: 2px; }
+  .neg { color: #a32d2d; }
+  .pos { color: #0f6e56; }
+  .source { font-size: 11px; color: #888780; font-style: italic; }
+  .divider { height: 1px; background: #d3d1c7; margin: 28px 0; }
+  .disclaimer { font-size: 12px; color: #888780; margin-top: 30px; padding: 16px; background: #f1efe8; border-radius: 8px; line-height: 1.6; }
+  .toc { background: #fff; border-radius: 12px; padding: 20px 24px; border: 0.5px solid #e8e6df; margin-bottom: 28px; }
+  .toc h3 { margin-top: 0; }
+  .toc ul { list-style: none; padding-left: 0; }
+  .toc li { padding: 4px 0; font-size: 14px; }
+  .toc a { color: #534ab7; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .rating-box { display: flex; gap: 16px; margin: 16px 0; }
+  .rating-card { flex: 1; background: #fff; border-radius: 12px; padding: 18px; border: 2px solid #1d9e75; text-align: center; }
+  .rating-card .label { font-size: 12px; color: #888780; }
+  .rating-card .value { font-size: 24px; font-weight: 700; color: #0f6e56; margin: 4px 0; }
+  .rating-card .sub { font-size: 12px; color: #888780; }
+  ul li { margin-bottom: 6px; font-size: 15px; }
+  strong { color: #1a1a1a; }
+  .num-red { color: #a32d2d; font-weight: 700; }
+  .num-green { color: #0f6e56; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<h1>阿里巴巴 (BABA / 9988.HK) 深度分析报告</h1>
+<p class="subtitle">股价为何大跌？是否还值得投资？ | 报告日期：2026年6月27日</p>
+
+<div class="info-box">
+  <p style="margin:0;"><strong>一句话结论：</strong>阿里巴巴股价从2025年10月高点腰斩，核心原因是 AI + 即时零售双线烧钱导致利润崩塌、自由现金流转负。但这是"主动战略投入"而非"经营性失血"——SOTP 估值约 4 万亿人民币 vs 当前市值约 1.7 万亿，折价超 55%。当前属于 <strong>"左侧布局窗口"</strong>，建议 <strong>观察名单 → 分批建仓</strong>。</p>
+</div>
+
+<div class="toc">
+  <h3>目录</h3>
+  <ul>
+    <li>一、股价走势回顾：从高点腰斩</li>
+    <li>二、下跌原因深度拆解：六大因素</li>
+    <li>三、FY2026 财务全景：利润崩塌的真相</li>
+    <li>四、多空双方核心论点</li>
+    <li>五、SOTP 分部估值：市场在忽略什么？</li>
+    <li>六、投资建议与行动计划</li>
+  </ul>
+</div>
+
+<h2>一、股价走势回顾：从高点腰斩</h2>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="label">美股 BABA</div>
+    <div class="value">$95</div>
+    <div class="change neg">较高点 -50.7%</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">港股 9988</div>
+    <div class="value">HK$89.8</div>
+    <div class="change neg">较高点 -51.5%</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">市值蒸发</div>
+    <div class="value">1.8万亿</div>
+    <div class="change neg">港元</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">PE (TTM)</div>
+    <div class="value">~16x</div>
+    <div class="change neg">近10年极低分位</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">PB</div>
+    <div class="value">~1.6x</div>
+    <div class="change neg">历史底部区域</div>
+  </div>
+</div>
+
+<p>2025年10月，借 AI 业务增长预期和云业务前景利好，阿里巴巴美股一度攀至 <strong>192.67 美元</strong>，港股触及 <strong>185.17 港元</strong>，对应总市值超 3.55 万亿港元。此后开启长达 8 个月的阴跌，截至 2026 年 6 月 26 日，美股收报 <strong>95.07 美元</strong>，港股报 <strong>89.8 港元</strong>，双双创 16 个月新低。</p>
+
+<p>年初至今港股累计跌幅超 <span class="num-red">33%</span>，走势明显弱于恒生科技指数整体表现。6月26日单日港股跌幅达 5.47%，技术面已破位，触及 52 周低点 94.72 美元。</p>
+
+<p class="source">数据来源：新浪财经、百度百家号、雪球（2026年6月26日）</p>
+
+<h2>二、下跌原因深度拆解：六大因素</h2>
+
+<h3>因素 1：AI + 云基础设施"暴力投入"，自由现金流转负</h3>
+<div class="warn-box">
+  <p style="margin:0;"><strong>核心数据：</strong>FY2026 全年自由现金流为 <span class="num-red">-466 亿元</span>（去年同期 +739 亿元），CapEx 达 <strong>1,261 亿元</strong>（同比 +47%），几乎全部投向 AI 算力基建、即时零售补贴和千问应用获客。</p>
+</div>
+<p>市场最恐惧的不是收入下滑——收入同口径仍在增长 11%——而是自由现金流从正 739 亿变成负 466 亿，一个年度"烧掉"了 1,200 亿元的现金流变化。对于一家此前被视为"现金印钞机"的公司，这种转变直接击穿了估值锚。</p>
+
+<h3>因素 2：即时零售（淘宝闪购）巨亏抢市场</h3>
+<p>为防御美团和抖音的进攻，阿里在 FY2026 全面发力"淘宝闪购"即时零售业务。该业务全年收入 <strong>785 亿元（+47%）</strong>，但测算 EBITA 亏损高达 <span class="num-red">~970 亿元</span>，营收与亏损近乎 1:1。这笔亏损几乎全部由淘天利润覆盖，导致中国电商集团 EBITA 同比下降 40%。</p>
+
+<h3>因素 3：618 大促遇冷，电商大盘增长乏力</h3>
+<p>花旗等机构判断 2026 年 618 大概率是近 16 年来最低调的一届，复旦大学大数据实验室测算全网线上 GMV 同比增速仅 <span class="num-red">3.2%</span>。拼多多和抖音电商持续侵蚀淘天份额，阿里电商日活 4 亿 vs 抖音电商日活超 4 亿，用户时长之争处于守势。</p>
+
+<h3>因素 4：管理层动荡与组织阵痛</h3>
+<ul>
+  <li>年初千问核心负责人林俊旸闪电离职</li>
+  <li>6月合伙人委员会罕见发文严厉批评钉钉团队管理方式</li>
+  <li>陈航卸任钉钉 CEO，管理层突现重大调整</li>
+  <li>市场传出计划出售灵犀互娱（游戏业务）补充现金流</li>
+</ul>
+<p>频繁的人事变动加剧了市场对"组织能力跟不上战略野心"的担忧。</p>
+
+<h3>因素 5：Qwen 应用获客成本激增</h3>
+<p>FY2026 Q4 销售与营销费用占收入比从 15.3% 飙升至 <span class="num-red">21.9%</span>（+6.6pp），主因即时零售补贴和 Qwen 应用用户获取投入。非 GAAP 净利润从 1,581 亿暴跌至 <span class="num-red">607 亿元</span>（-62%），调整后 EBITA 利润率从 17% 降至 7%。</p>
+
+<h3>因素 6：中概股整体承压</h3>
+<p>恒生科技指数年内整体走弱，南向资金大举流出中概科技板块，阿里巴巴作为权重股首当其冲。中美关系不确定性持续压制估值溢价。</p>
+
+<h2>三、FY2026 财务全景：利润崩塌的真相</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>指标</th>
+      <th>FY2025</th>
+      <th>FY2026</th>
+      <th>同比变化</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>总收入</td><td>9,963 亿</td><td>10,237 亿</td><td class="pos">+3%（同口径+11%）</td></tr>
+    <tr><td>调整后 EBITA</td><td>1,731 亿</td><td>764 亿</td><td class="neg">-56%</td></tr>
+    <tr><td>调整后 EBITA 利润率</td><td>17%</td><td>7%</td><td class="neg">-10pp</td></tr>
+    <tr><td>非 GAAP 净利润</td><td>1,581 亿</td><td>607 亿</td><td class="neg">-62%</td></tr>
+    <tr><td>自由现金流</td><td>+739 亿</td><td>-466 亿</td><td class="neg">转负</td></tr>
+    <tr><td>经营活动现金流</td><td>1,635 亿</td><td>762 亿</td><td class="neg">-53%</td></tr>
+    <tr><td>云智能集团收入</td><td>1,180 亿</td><td>1,581 亿</td><td class="pos">+34%</td></tr>
+    <tr><td>云外部收入增速</td><td>—</td><td>—</td><td class="pos">+40%（Q4）</td></tr>
+    <tr><td>即时电商收入</td><td>536 亿</td><td>785 亿</td><td class="pos">+47%</td></tr>
+    <tr><td>现金及流动投资</td><td>—</td><td>5,208 亿</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<div class="success-box">
+  <h4 style="margin-top:0;">关键洞察：利润崩塌 ≠ 经营恶化</h4>
+  <p style="margin:0;">FY2026 的利润暴跌本质上是 <strong>"主动前置投入"</strong> 而非 <strong>"经营性失血"</strong>：</p>
+  <ul style="margin-top:8px;">
+    <li>核心淘天（剔除即时零售）EBITA 仍约 <strong>1,930-2,000 亿元</strong>，盈利能力未实质下降</li>
+    <li>收入同口径增长 <strong>+11%</strong>，需求端没有问题</li>
+    <li>云业务收入加速增长 <strong>+38%</strong>，AI 产品收入连续 11 个季度三位数增长</li>
+    <li>账上现金 <strong>5,208 亿元</strong>，弹药充足</li>
+    <li>即时零售 UE（单位经济模型）和客单价环比持续改善，管理层承诺 FY2027 末 UE 转正</li>
+  </ul>
+</div>
+
+<p class="source">数据来源：阿里巴巴 FY2026 年报（2026年5月13日发布）、BusinessWire</p>
+
+<h2>四、多空双方核心论点</h2>
+
+<div class="rating-box" style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+  <div style="background:#e1f5ee; border-radius:12px; padding:18px; border: 1px solid #9fe1cb;">
+    <h4 style="margin-top:0; color:#0f6e56;">多头论点（Bull Case）</h4>
+    <ol style="padding-left:18px; font-size:14px;">
+      <li><strong>AI 云是确定性增长引擎</strong>：外部收入 +40%，AI 产品收入 11 季度三位数增长，Token 消耗 3 个月增 6 倍</li>
+      <li><strong>全栈 AI 护城河</strong>：大摩评级为全球唯二全栈 AI 公司（芯片→云→模型→应用），中国唯一四层全优</li>
+      <li><strong>估值极度便宜</strong>：PE ~16x、PB ~1.6x 处近 10 年极低分位，SOTP 估值折价超 55%</li>
+      <li><strong>即时零售 UE 改善中</strong>：收入 +57%，管理层承诺 FY2027 末 UE 转正</li>
+      <li><strong>AIDC 接近盈亏平衡</strong>：Q4 亏损仅 1.38 亿，年内有望季度扭亏</li>
+      <li><strong>5,208 亿现金 + 持续回购</strong>：下行有托底</li>
+    </ol>
+  </div>
+  <div style="background:#faece7; border-radius:12px; padding:18px; border: 1px solid #f5c4b3;">
+    <h4 style="margin-top:0; color:#993c1d;">空头论点（Bear Case）</h4>
+    <ol style="padding-left:18px; font-size:14px;">
+      <li><strong>FCF 转负的持续性</strong>：若 AI 投入 2 年内收入增长 < 20%，ROIC 将持续低于 WACC</li>
+      <li><strong>即时零售无底洞</strong>：年亏损 ~970 亿，若 FY2027 无法 UE 转正将持续拖累</li>
+      <li><strong>电商份额持续流失</strong>：拼多多 + 抖音双重夹击，618 GMV 增速仅 3.2%</li>
+      <li><strong>管理层动荡</strong>：千问负责人离职、钉钉换帅，执行风险上升</li>
+      <li><strong>中概股折价</strong>：地缘政治风险持续压制估值</li>
+      <li><strong>估值陷阱风险</strong>：便宜可能更便宜，市场定价语言未切换</li>
+    </ol>
+  </div>
+</div>
+
+<h2>五、SOTP 分部估值：市场在忽略什么？</h2>
+
+<p>当前市场用纯电商 PE 给阿里估值，但阿里已经从"电商平台"向"AI 基础设施公司"转型。SOTP（分部加总）估值揭示了巨大的认知差：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>业务板块</th>
+      <th>估值方法</th>
+      <th>保守估值</th>
+      <th>中性估值</th>
+      <th>乐观估值</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>核心淘天（剔除即时零售）</td>
+      <td>PE 10-12x</td>
+      <td>1.64 万亿</td>
+      <td>1.82 万亿</td>
+      <td>1.97 万亿</td>
+    </tr>
+    <tr>
+      <td>阿里云（AI + 云）</td>
+      <td>PS 5-8x</td>
+      <td>0.79 万亿</td>
+      <td>1.03 万亿</td>
+      <td>1.26 万亿</td>
+    </tr>
+    <tr>
+      <td>AIDC（国际电商）</td>
+      <td>PS 1.2-1.5x</td>
+      <td>0.17 万亿</td>
+      <td>0.19 万亿</td>
+      <td>0.22 万亿</td>
+    </tr>
+    <tr>
+      <td>菜鸟 + 本地生活</td>
+      <td>PS 0.8-1.3x</td>
+      <td>0.15 万亿</td>
+      <td>0.18 万亿</td>
+      <td>0.19 万亿</td>
+    </tr>
+    <tr>
+      <td>大文娱 + 其他</td>
+      <td>PS 0.5-0.8x</td>
+      <td>0.10 万亿</td>
+      <td>0.13 万亿</td>
+      <td>0.16 万亿</td>
+    </tr>
+    <tr>
+      <td>即时零售（淘宝闪购）</td>
+      <td>PS 0.5x</td>
+      <td>0.04 万亿</td>
+      <td>0.04 万亿</td>
+      <td>0.04 万亿</td>
+    </tr>
+    <tr>
+      <td>净现金 + 股权投资</td>
+      <td>市价</td>
+      <td>0.60 万亿</td>
+      <td>0.70 万亿</td>
+      <td>0.70 万亿</td>
+    </tr>
+    <tr style="font-weight:700; background:#f1efe8;">
+      <td>SOTP 合计</td>
+      <td>—</td>
+      <td>3.49 万亿</td>
+      <td>4.09 万亿</td>
+      <td>4.54 万亿</td>
+    </tr>
+    <tr style="color:#a32d2d; font-weight:700;">
+      <td>当前市值</td>
+      <td>—</td>
+      <td colspan="3">~1.70 万亿人民币（港股 ~1.78 万亿港元）</td>
+    </tr>
+    <tr style="color:#0f6e56; font-weight:700;">
+      <td>折价幅度</td>
+      <td>—</td>
+      <td>-51%</td>
+      <td>-58%</td>
+      <td>-63%</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="highlight-box">
+  <h4 style="margin-top:0;">市场错在哪里？（变异认知）</h4>
+  <p style="margin:0;">市场将阿里按 <strong>"衰退电商"</strong> 定价（PE ~16x），但实际正在变成 <strong>"AI 基础设施公司"</strong>。仅核心淘天 + 阿里云两项就值 ~2.85 万亿，已经远超市值 1.70 万亿。阿里云的 AI 收入（年化 ~358 亿，连续 11 季度三位数增长）、平头哥芯片（47 万片部署，年化过百亿营收）、Qwen 生态——这些"AI 暗资产"的期权价值在当前恐慌中被集体清零。</p>
+</div>
+
+<p class="source">估值方法参考：中金公司、大摩（Morgan Stanley）、高盛研究报告；数据基于 FY2026 年报</p>
+
+<h2>六、投资建议与行动计划</h2>
+
+<div class="rating-box">
+  <div class="rating-card">
+    <div class="label">评级</div>
+    <div class="value">Buy（左侧）</div>
+    <div class="sub">时间维度：12-18 个月</div>
+  </div>
+  <div class="rating-card" style="border-color:#378add;">
+    <div class="label">目标价（美股）</div>
+    <div class="value" style="color:#185fa5;">$150-170</div>
+    <div class="sub">较当前 +58%-79%</div>
+  </div>
+  <div class="rating-card" style="border-color:#ba7517;">
+    <div class="label">目标价（港股）</div>
+    <div class="value" style="color:#854f0b;">HK$140-160</div>
+    <div class="sub">较当前 +56%-78%</div>
+  </div>
+</div>
+
+<h3>行动计划：<span class="tag tag-neutral">观察名单 → 分批建仓</span></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>阶段</th>
+      <th>触发条件</th>
+      <th>行动</th>
+      <th>仓位</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>当前（左侧）</td>
+      <td>PE ~16x，PB ~1.6x，RSI 超卖，逼近 $95/HK$90</td>
+      <td>试探性建仓</td>
+      <td>10-15%</td>
+    </tr>
+    <tr>
+      <td>加仓信号</td>
+      <td>放量站上 5 日/10 日均线 + Q1 FY2027 财报确认 FCF 收窄</td>
+      <td>加仓至目标仓位</td>
+      <td>25-30%</td>
+    </tr>
+    <tr>
+      <td>确认信号</td>
+      <td>云收入维持 30%+ 增速 + 即时零售 UE 改善轨迹明确</td>
+      <td>持有，不加不减</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>止损条件</td>
+      <td>云增速跌破 20% 或即时零售 FY2027 末 UE 未转正</td>
+      <td>减仓至 10% 以下</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>止盈条件</td>
+      <td>股价修复至 SOTP 保守估值的 70%（~$150）</td>
+      <td>开始分批止盈</td>
+      <td>—</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>关键监测指标（季度跟踪）</h3>
+<ul>
+  <li><strong>云智能集团收入增速</strong>：当前 +38-40%，警戒线 < 25%</li>
+  <li><strong>AI 产品收入占比</strong>：当前 30%，趋势线向上为正面信号</li>
+  <li><strong>即时零售 UE 和客单价</strong>：环比改善趋势是否延续</li>
+  <li><strong>自由现金流</strong>：从 -466 亿向 0 收窄的速度</li>
+  <li><strong>中国电商 CMR 增速</strong>：同口径维持 7-8%+ 为健康</li>
+  <li><strong>88VIP 会员数</strong>：当前 6,200 万，持续增长为护城河加深信号</li>
+  <li><strong>Token 消耗量</strong>：MaaS 平台 3 个月增 6 倍，追踪增速是否持续</li>
+</ul>
+
+<h3>核心风险</h3>
+<div class="warn-box">
+  <ol style="margin:0; padding-left:18px;">
+    <li><strong>AI 投入回报不及预期</strong>：1,261 亿 CapEx 若 2 年内 AI 收入增速 < 20%，ROIC 持续低于 WACC</li>
+    <li><strong>即时零售烧钱失控</strong>：FY2026 亏损 ~970 亿，若 FY2027 末 UE 未转正将持续拖累</li>
+    <li><strong>电商份额加速流失</strong>：若淘天 GMV 份额跌破 30%，核心估值锚下移</li>
+    <li><strong>管理层执行风险</strong>：人事动荡可能影响战略落地节奏</li>
+    <li><strong>中美关系恶化</strong>：美股退市风险（港股无此风险但情绪传染）</li>
+  </ol>
+</div>
+
+<div class="divider"></div>
+
+<h3>PM 七问检验</h3>
+<table>
+  <tbody>
+    <tr><td><strong>1. 什么被错误定价了？</strong></td><td>市场按"衰退电商"定价，忽略了阿里云 AI 业务（年化收入 358 亿+，增速三位数）的期权价值，以及核心淘天盈利能力被即时零售亏损掩盖的事实</td></tr>
+    <tr><td><strong>2. 当前价格反映了什么？</strong></td><td>反映了 FCF 转负、利润暴跌 62%、电商竞争恶化、管理层动荡的极端悲观预期</td></tr>
+    <tr><td><strong>3. 什么能证明论点？</strong></td><td>未来 2-3 个季度：云增速维持 30%+、FCF 收窄、即时零售 UE 环比改善</td></tr>
+    <tr><td><strong>4. 什么能推翻论点？</strong></td><td>云增速跌破 20%、即时零售 FY2027 末未 UE 转正、电商份额加速流失</td></tr>
+    <tr><td><strong>5. 为什么是现在？</strong></td><td>PE ~16x + PB ~1.6x 处历史极低分位，RSI 超卖，机构目标价均值 $190+（上涨空间 80%+）</td></tr>
+    <tr><td><strong>6. 什么会改变仓位/评级？</strong></td><td>加仓：FCF 收窄信号确认；减仓：云增速跌破 25% 或即时零售亏损扩大</td></tr>
+    <tr><td><strong>7. 还缺少什么证据？</strong></td><td>FY2027 Q1 财报（预计 2026 年 8 月发布）将验证 FCF 改善轨迹，这是最关键的下一个数据点</td></tr>
+  </tbody>
+</table>
+
+<div class="disclaimer">
+  <strong>免责声明：</strong>本报告仅供参考，不构成个人投资建议。所有数据来源于公开市场信息（阿里巴巴 FY2026 年报、BusinessWire、新浪财经、雪球、百度等），不保证信息的绝对准确、完整或时效性。历史业绩不构成对未来收益的保证。投资有风险，决策需谨慎。报告中的估值分析和目标价基于特定假设，实际结果可能因假设条件变化而大幅偏离。
+</div>
+
+</body>
+</html>
