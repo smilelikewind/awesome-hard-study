@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# Bun
+bun.lock
+bun.lockb
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE / Editor
+.vscode/settings.json
+.vscode/*.code-snippets
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage/
+
+# Runtime / Cache
+.turbo
+.eslintcache
+*.tsbuildinfo
+
+# Agent / IDE tool directories (project root & sub-projects)
+.codewhale/
+.reasonix/
+.workbuddy/
+.opencode/
+.sisyphus/
+
+# Generated files
+generated/
+
+# Temp files
+tmp/
+temp/
